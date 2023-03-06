@@ -36,6 +36,7 @@ giocaDom.addEventListener('click', function() {
         
         let punteggioVincente = numeroquadrati - numeroBombe;
         const currentQuadrato = createQuadrato(i);
+        let statoQuadrato = true;
                               
         currentQuadrato.addEventListener('click', function() {
             if (stato == true) {
@@ -50,10 +51,11 @@ giocaDom.addEventListener('click', function() {
                         }
                     }
 
-                } else {
-                this.classList.add('cliccato');
-                console.log(i);
-                punto += 1;
+                } else if (statoQuadrato == true) {
+                    this.classList.add('cliccato');
+                    console.log(i);
+                    punto += 1;
+                    statoQuadrato = false;
 
                     if (punto == punteggioVincente) {
                         haiVintoDom.classList.remove('dnone');
