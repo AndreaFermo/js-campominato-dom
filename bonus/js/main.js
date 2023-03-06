@@ -3,9 +3,11 @@ const giocaDom = document.querySelector('#gioca');
 const haiVintoDom = document.querySelector('#vinto');
 const haiPersoDom = document.querySelector('#perso');
 
+
 giocaDom.addEventListener('click', function() { 
     griagliaDom.classList.remove('grigliaPiccola');
     griagliaDom.classList.remove('grigliaMedia');
+    stato = true;
 
     haiPersoDom.classList.add('dnone');
     haiVintoDom.classList.add('dnone');
@@ -33,32 +35,35 @@ giocaDom.addEventListener('click', function() {
     for (let i = 1; i <= numeroquadrati; i++) {
         
         let punteggioVincente = numeroquadrati - numeroBombe;
-        const currentQuadrato = createQuadrato(i);                    
+        const currentQuadrato = createQuadrato(i);
+                              
         currentQuadrato.addEventListener('click', function() {
-           
-            if (listaBombe.includes(i)) {
-                this.classList.add('bomba');
-                haiPersoDom.classList.remove('dnone');
-                for (let i = 1; i <= numeroquadrati; i++) {
-                    let scoppiaBombe = document.querySelector(`.quadrato:nth-child(${i})`)                    
-                    if (listaBombe.includes(i)) {
-                       scoppiaBombe.classList.add('bomba');
+            if (stato == true) {
+                if (listaBombe.includes(i)) {
+                    this.classList.add('bomba');
+                    haiPersoDom.classList.remove('dnone');
+                    stato = false;
+                    for (let i = 1; i <= numeroquadrati; i++) {
+                        let scoppiaBombe = document.querySelector(`.quadrato:nth-child(${i})`);                   
+                        if (listaBombe.includes(i)) {
+                        scoppiaBombe.classList.add('bomba');
+                        }
+                    }
+
+                } else {
+                this.classList.add('cliccato');
+                console.log(i);
+                punto += 1;
+
+                    if (punto == punteggioVincente) {
+                        haiVintoDom.classList.remove('dnone');
+                        stato = false;
+                        
                     }
                 }
-
-            } else {
-            this.classList.add('cliccato');
-            console.log(i);
-            punto += 1;
-
-                if (punto == punteggioVincente) {
-                    haiVintoDom.classList.remove('dnone');
-                    
-                }
-            }
-    
-            punteggioDom.innerHTML  = `${punto}`;
-           
+        
+                punteggioDom.innerHTML  = `${punto}`;
+            }   
         })
         griagliaDom.append(currentQuadrato);
         currentQuadrato.innerHTML = `${i}`;
