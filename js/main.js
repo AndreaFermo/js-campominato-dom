@@ -1,6 +1,7 @@
 const griagliaDom = document.querySelector('#griglia');
 const giocaDom = document.querySelector('#gioca');
 
+
 giocaDom.addEventListener('click', function() { 
     griagliaDom.classList.remove('grigliaPiccola');
     griagliaDom.classList.remove('grigliaMedia');
@@ -8,6 +9,9 @@ giocaDom.addEventListener('click', function() {
     let difficoltaDom = document.querySelector('#difficolta');
     let valoredifficoltaDom = difficoltaDom.value;
     griagliaDom.innerHTML = ``;
+
+    let listaBombe = [];
+    let numeroBombe = 16;
     
     let numeroquadrati = scegliDifficolta (valoredifficoltaDom);
     
@@ -22,6 +26,13 @@ giocaDom.addEventListener('click', function() {
         griagliaDom.append(currentQuadrato);
         currentQuadrato.innerHTML = `${i}`;
     }
+
+    for (let i = 0; i < numeroBombe; i++) {
+        let bomba = generaNumeroCasualeUnico(listaBombe, 1, numeroquadrati);
+        listaBombe.push(bomba);
+        console.log(listaBombe);
+    }    
+
 })
 
 function createQuadrato() {
@@ -41,5 +52,26 @@ function scegliDifficolta (valore) {
         return 49
     }
 }
+
+function generaNumeroCasuale (min, max) {
+    const numeroCasuale = Math.floor(Math.random() * (max-min +1) +min);
+    return numeroCasuale;
+}
+
+function generaNumeroCasualeUnico (lista, min, max,){
+    let numeroValido = false;
+    let numeroCasualeValido;
+
+    while (!numeroValido) {
+        numeroCasualeValido = generaNumeroCasuale(min, max);
+
+        if (!lista.includes(numeroCasualeValido)) {
+            numeroValido = true;
+        }
+    }
+    
+    return numeroCasualeValido;
+}
+
 
 
