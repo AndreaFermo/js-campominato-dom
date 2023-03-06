@@ -1,14 +1,24 @@
 const griagliaDom = document.querySelector('#griglia');
 const giocaDom = document.querySelector('#gioca');
+const haiVintoDom = document.querySelector('#vinto');
+const haiPersoDom = document.querySelector('#perso');
+
 
 
 giocaDom.addEventListener('click', function() { 
     griagliaDom.classList.remove('grigliaPiccola');
     griagliaDom.classList.remove('grigliaMedia');
+
+    haiPersoDom.classList.add('dnone');
+    haiVintoDom.classList.add('dnone');
    
     let difficoltaDom = document.querySelector('#difficolta');
     let valoredifficoltaDom = difficoltaDom.value;
     griagliaDom.innerHTML = ``;
+
+    let punto = 0;
+    let punteggioDom = document.querySelector('#punteggio');
+    punteggioDom.innerHTML  = `${punto}`;
 
     let listaBombe = [];
     let numeroBombe = 16;
@@ -23,19 +33,31 @@ giocaDom.addEventListener('click', function() {
 
     
     for (let i = 1; i <= numeroquadrati; i++) {
-   
+        
+        let punteggioVincente = numeroquadrati - numeroBombe;
         const currentQuadrato = createQuadrato(i);                    
-
         currentQuadrato.addEventListener('click', function() {
-            this.classList.add('cliccato');
-            console.log(i);
             
-        if (listaBombe.includes(i)) {
-            this.classList.add('bomba');
-        }
+            if (punto == punteggioVincente - 1) {
+                haiVintoDom.classList.remove('dnone');
+            } else {
+                    if (listaBombe.includes(i)) {
+                    this.classList.add('bomba');
+                    haiPersoDom.classList.remove('dnone');
+                    } else {
+                    this.classList.add('cliccato');
+                    console.log(i);
+                    punto += 1;
+                }
+            }
+
+            punteggioDom.innerHTML  = `${punto}`;
+           
         })
         griagliaDom.append(currentQuadrato);
         currentQuadrato.innerHTML = `${i}`;
+
+        
 
     }
 
@@ -78,6 +100,8 @@ function generaNumeroCasualeUnico (lista, min, max,){
     
     return numeroCasualeValido;
 }
+
+
 
 
 

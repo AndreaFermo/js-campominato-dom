@@ -27,6 +27,7 @@ main {
     display: flex;
 }
 
+
 header .container {
     
     justify-content: space-between;
@@ -40,12 +41,17 @@ footer .container {
     align-items: center;
 }
 
-main .container {
+
+#griglia {
     width: 620px;
     height: 600px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+#campo {
+    flex-direction: column;
 }
 
 .headerLeft, .headerRignt {
@@ -67,7 +73,7 @@ main .container {
     background-color: rgb(0, 123, 255);
 }
 
-.cliccato.bomba {
+.bomba {
     background-color: red;
 }
 
@@ -84,14 +90,23 @@ main .container {
     border-radius: 5px;
 }
 
-.container.grigliaPiccola {
+#griglia.grigliaPiccola {
     width: 440px;
     height: 420px;
 }
 
-.container.grigliaMedia {
+#griglia.grigliaMedia {
     width: 560px;
     height: 540px;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.dnone {
+    display: none;
 }
 
 
