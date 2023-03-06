@@ -1,0 +1,96 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    height: 70px;
+}
+
+footer {
+    height: 50px;
+}
+
+main {
+    background-color: #7fffd4;
+    height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.container {
+    max-width: 1170px;
+    margin: auto;
+    padding: 0px 10px;  
+    display: flex;
+}
+
+header .container {
+    
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    
+}
+
+footer .container {
+    height: 100%;
+    align-items: center;
+}
+
+main .container {
+    width: 620px;
+    height: 600px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerLeft, .headerRignt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quadrato {
+    border: 1px solid black;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quadrato.cliccato {
+    background-color: rgb(0, 123, 255);
+}
+
+.headerLeft img {
+    height: 30px;
+}
+
+#gioca {
+    background-color: lightgrey;
+    width: 60px;
+    text-align: center;
+    padding: 2px 0px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.container.grigliaPiccola {
+    width: 440px;
+    height: 420px;
+}
+
+.container.grigliaMedia {
+    width: 560px;
+    height: 540px;
+}
+
+
+
+
+
