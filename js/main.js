@@ -14,18 +14,6 @@ giocaDom.addEventListener('click', function() {
     let numeroBombe = 16;
     
     let numeroquadrati = scegliDifficolta (valoredifficoltaDom);
-    
-    for (let i = 1; i <= numeroquadrati; i++) {
-   
-        const currentQuadrato = createQuadrato(i);                    
-
-        currentQuadrato.addEventListener('click', function() {
-            this.classList.toggle('cliccato');
-            console.log(i);
-        })
-        griagliaDom.append(currentQuadrato);
-        currentQuadrato.innerHTML = `${i}`;
-    }
 
     for (let i = 0; i < numeroBombe; i++) {
         let bomba = generaNumeroCasualeUnico(listaBombe, 1, numeroquadrati);
@@ -33,6 +21,25 @@ giocaDom.addEventListener('click', function() {
         console.log(listaBombe);
     }    
 
+    
+    for (let i = 1; i <= numeroquadrati; i++) {
+   
+        const currentQuadrato = createQuadrato(i);                    
+
+        currentQuadrato.addEventListener('click', function() {
+            this.classList.add('cliccato');
+            console.log(i);
+            
+        if (listaBombe.includes(i)) {
+            this.classList.add('bomba');
+        }
+        })
+        griagliaDom.append(currentQuadrato);
+        currentQuadrato.innerHTML = `${i}`;
+
+    }
+
+  
 })
 
 function createQuadrato() {
@@ -64,7 +71,6 @@ function generaNumeroCasualeUnico (lista, min, max,){
 
     while (!numeroValido) {
         numeroCasualeValido = generaNumeroCasuale(min, max);
-
         if (!lista.includes(numeroCasualeValido)) {
             numeroValido = true;
         }
